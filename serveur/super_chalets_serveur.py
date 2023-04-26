@@ -10,4 +10,6 @@ class merdeuse() :
     def safourien() : 
           pass
     
+    def unautresafourien() : 
+          pass
      
