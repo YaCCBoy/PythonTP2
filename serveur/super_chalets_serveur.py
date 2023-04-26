@@ -13,3 +13,5 @@ class merdeuse() :
     def unautresafourien() : 
           pass
      
+print("C<est de la merde ce truc")
+#En effet mon cher c'est de la grosse merde
