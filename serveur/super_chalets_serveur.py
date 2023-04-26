@@ -7,4 +7,7 @@ class merdeuse() :
             self.excrements = excrements
             self.jaune = jaune
 
+    def safourien() : 
+          pass
+    
      
