@@ -5,4 +5,4 @@ with open("utilisateurs.csv") as csvfile :
     for row in reader:
         print(row['first_name'], row['last_name'])
 
-print("Hallo world")
+print("Hallo world ouais ouais mon cul")
