@@ -21,3 +21,5 @@ def data_dipos() :
     xml_string = file2.read()
     dispos_dict = xmltodict.parse(xml_string)
     print(dispos_dict)
+
+print('hallo world')
