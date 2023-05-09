@@ -1,6 +1,6 @@
 import csv
 import xmltodict
-import client
+#import client
 
 class Utilisateur:
     def __init__(self, email, mdp, nom, prenom, type, adresse_no, adresse_rue, adresse_ville, adresse_prov, adresse_pays, adresse_cp):
