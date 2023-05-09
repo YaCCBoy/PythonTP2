@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="">
+    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="Ajouter encore plus de trucs inutiles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/impex/impex.py" beforeDir="false" afterPath="$PROJECT_DIR$/impex/impex.py" afterDir="false" />
     </list>
@@ -41,7 +41,18 @@
       <option name="presentableId" value="Default" />
       <updated>1683127800473</updated>
     </task>
+    <task id="LOCAL-00001" summary="Ajouter encore plus de trucs inutiles">
+      <created>1683128915038</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683128915038</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -53,5 +64,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajouter encore plus de trucs inutiles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajouter encore plus de trucs inutiles" />
   </component>
 </project>
