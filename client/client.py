@@ -32,13 +32,22 @@ class ClientServeurChalet:
         req = requests.post(self.__url_base + '/utilisateur', data=json_body)
         print(req.status_code)
         print(req.content)
-    def get_reservations_liste(self):
-        pass
-    def post_chalet(self):
-        pass
-    def get_chalet(self):
-        pass
-    def post_plage(self):
-        pass
+    def get_reservations_liste(self, liste_reservations_ord):
+        req = requests.get(self.__url_base + '/liste des reservations ordonnes/' + liste_reservations_ord)
+        print(req.status_code)
+        print(req.content)
+    def post_chalet(self, chalets):
+        json_body = '{"chalets": "' + chalets + '"}'
+        req = requests.post(self.__url_base + '/chalets', data=json_body)
+        print(req.status_code)
+        print(req.content)
+    def get_chalet(self, info_chalets):
+        req = requests.get(self.__url_base + '/chalets/' + info_chalets)
+        print(req.status_code)
+        print(req.content)
+    def post_plage(self, plage):
+        json_body = '{"plages": "' + plage + '"}'
+        req = requests.post(self.__url_base + '/plages', data=json_body)
+        print(req.status_code)
+        print(req.content)
 
-print('hallo world')
