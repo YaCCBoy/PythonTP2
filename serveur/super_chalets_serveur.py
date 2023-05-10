@@ -20,5 +20,11 @@ class Truc() :
         if nouv_reservation == anc_reservation :
             raise ValueError('Aucun changement dans la reservation')
         self.reservations[anc_reservation] = nouv_reservation
-    def get_reservations(self):
+    def get_reservation(self, ID_reservation):
+        return self.__reservations[ID_reservation]
+
+    def get_reservations(self, email):
+
+
+
         pass
