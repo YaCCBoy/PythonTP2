@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="Ajout des trucs dans le client mais tbh je comprends rien quand même">
+    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="Enlevé des trucs inutiles dans impex">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/impex/impex.py" beforeDir="false" afterPath="$PROJECT_DIR$/impex/impex.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +68,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683680939297</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Enlevé des trucs inutiles dans impex">
+      <created>1683729605245</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1683729605245</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -91,6 +97,7 @@
     <MESSAGE value="Ajout des classes Utilisateur et Chalet et de leurs getters et setters. Ajout de &quot;import client&quot;" />
     <MESSAGE value="Comment out le import client" />
     <MESSAGE value="Ajout des trucs dans le client mais tbh je comprends rien quand même" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout des trucs dans le client mais tbh je comprends rien quand même" />
+    <MESSAGE value="Enlevé des trucs inutiles dans impex" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enlevé des trucs inutiles dans impex" />
   </component>
 </project>
