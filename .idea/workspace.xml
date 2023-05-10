@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="Comment out le import client">
+    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="Ajout des trucs dans le client mais tbh je comprends rien quand même">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/impex/impex.py" beforeDir="false" afterPath="$PROJECT_DIR$/impex/impex.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serveur/super_chalets_serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/serveur/super_chalets_serveur.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +62,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683674977325</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ajout des trucs dans le client mais tbh je comprends rien quand même">
+      <created>1683680939297</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1683680939297</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -85,6 +90,7 @@
     <MESSAGE value="Ajouter encore plus de trucs inutiles" />
     <MESSAGE value="Ajout des classes Utilisateur et Chalet et de leurs getters et setters. Ajout de &quot;import client&quot;" />
     <MESSAGE value="Comment out le import client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comment out le import client" />
+    <MESSAGE value="Ajout des trucs dans le client mais tbh je comprends rien quand même" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout des trucs dans le client mais tbh je comprends rien quand même" />
   </component>
 </project>
