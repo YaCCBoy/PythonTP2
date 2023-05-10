@@ -11,11 +11,14 @@ class Truc() :
     def reservations(self):
         return self.reservations
 
-    def post_reservations(self, info_reservation):
-        if info_reservation in self.__reservations.keys():
+    def post_reservations(self, nouv_reservation):
+        if nouv_reservation in self.__reservations.keys():
             raise ValueError('Reservation deja existante ? ')
-        self.__reservations[info_reservation] = []
+        self.__reservations.append(nouv_reservation)
 
-    def put_reservations(self, ):
+    def put_reservations(self, nouv_reservation, anc_reservation):
+        if nouv_reservation == anc_reservation :
+            raise ValueError('Aucun changement dans la reservation')
+        self.reservations[anc_reservation] = nouv_reservation
     def get_reservations(self):
         pass
