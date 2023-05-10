@@ -52,3 +52,6 @@ class ClientServeurChalet:
         print(req.content)
 
 
+
+client = ClientServeurChalet('http://localhost:8000')
+client.get_reservation('8764')
