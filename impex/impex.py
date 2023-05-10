@@ -156,3 +156,6 @@ def data_dipos() :
     print(dispos_dict)
 
 print('hallo world')
+
+def coucou():
+    print("Coucou le monde")
