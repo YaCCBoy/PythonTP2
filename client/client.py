@@ -40,3 +40,5 @@ class ClientServeurChalet:
         pass
     def post_plage(self):
         pass
+
+print('hallo world')
