@@ -15,14 +15,14 @@ class ClientServeurChalet:
         req = requests.get(self.__url_base + '/reservation du client/' + reservations_c)
         print(req.status_code)
         print(req.content)
-    def post_reservation(self, reservation):
-        json_body = '{"reservation": "' + reservation + '"}'
+    def post_reservation(self, info_reservation):
+        json_body = '{"reservation": "' + info_reservation + '"}'
         req = requests.post(self.__url_base + '/reservation', data=json_body)
         print(req.status_code)
         print(req.content)
     def put_reservation(self, data_reservations, reservation):
         json_body = '{"reservation": "' + reservation + '" }'
-        req = requests.post(self.__url_base + '/data_reservations/' + data_reservations, data=json_body)
+        req = requests.put(self.__url_base + '/data_reservations/' + data_reservations, data=json_body)
         print(req.status_code)
         print(req.content)
     def delete_reservation(self):
@@ -50,4 +50,5 @@ class ClientServeurChalet:
         req = requests.post(self.__url_base + '/plages', data=json_body)
         print(req.status_code)
         print(req.content)
+
 
