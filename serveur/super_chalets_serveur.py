@@ -51,3 +51,37 @@ class Truc() :
             self.__reservations[reservations].append(plage)
         else :
             raise ValueError('ID de chalet inexistante')
+
+class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler) :
+
+
+    truc = Truc()
+
+    def do_GET(self):
+        path = self.path
+        print(path)
+
+        if path.startswith('/reservation/') :
+            reservation = path.split('/')[2]
+            content = 'Reservation : ' + reservation + '-> ' + str(self.truc.get_reservation[reservation])
+            self.send_response(200)
+            self.send_header()
+            self.wfile.write(bytes(content, 'utf-8'))
+
+        else :
+            self.send_response(500, 'ERREUR')
+            self.end_headers()
+
+class ServeurTest:
+    @staticmethod
+    def run(serveur_class=HTTPServer, serveur_port=8000, handler_class=TPBaseHTTPRequestHandler):
+        # le serveur va écouter sur localhost sur le port passé en paramètre
+        serveur_adresse = ('localhost', serveur_port)
+        # Les requêtes vont être gérées par handler_class passé en paramètre (notre class TPBaseHTTPRequestHandler
+        # par défaut)
+        httpd = serveur_class(serveur_adresse, handler_class)
+        # Écoute pour des requêtes jusqu'à ce qu'on arrête le serveur
+        httpd.serve_forever()
+
+
+ServeurTest.run()
