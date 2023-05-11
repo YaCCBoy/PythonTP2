@@ -3,21 +3,32 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
 class Handler:
-
+    # Constructeur
     def __init__(self):
         self.__reservations = {}
         self.__utilisateurs = {}
         self.__chalets = {}
 
+    # Setters
     @property
     def reservations(self):
         return self.__reservations
 
+    @property
+    def utilisateurs(self):
+        return self.__utilisateurs
+
+    @property
+    def chalets(self):
+        return self.__chalets
+
+    # Méthode pour ajouter une réservation
     def post_reservations(self, reservations, nouv_reservation):
         if reservations not in self.__reservations:
             self.__reservations[reservations] = []
         self.__reservations[reservations].append(nouv_reservation)
 
+    # Méthode pour remplacer la réservation
     def put_reservations(self, nouv_reservation, anc_reservation):
         if nouv_reservation == anc_reservation:
             raise ValueError('Aucun changement dans la réservation')
@@ -29,17 +40,20 @@ class Handler:
         else:
             raise ValueError('Réservation inexistante')
 
+    # Méthode pour obtenir les infos pour les réservations
     def get_reservation(self, ID_reservation):
         for reservations, reservations_list in self.__reservations.items():
             if ID_reservation in reservations_list:
                 return reservations_list[0]
         raise ValueError('ID inexistant')
 
+    # Méthode pour retourner les reservations de l'utilisateur
     def get_reservations(self, email):
         if email in self.__reservations:
             return self.__reservations[email]
         raise ValueError('Email inexistant')
 
+    # Méthode pour ajouter un utilisateur
     def post_utilisateur(self, reservations, utilisateur):
         if reservations not in self.__utilisateurs:
             self.__utilisateurs[reservations] = []
@@ -47,6 +61,7 @@ class Handler:
             raise ValueError('Utilisateur déjà existant')
         self.__utilisateurs[reservations].append(utilisateur)
 
+    # Méthode pour ajouter un chalet
     def post_chalet(self, chalets, chalet):
         if chalets not in self.__chalets:
             self.__chalets[chalets] = []
@@ -54,12 +69,14 @@ class Handler:
             raise ValueError('Chalet déjà existant')
         self.__chalets[chalets].append(chalet)
 
+    # Méthode pour retourner les informations sur un chalet
     def get_chalet(self, ID_chalet):
         for chalets, chalets_list in self.__chalets.items():
             if ID_chalet in chalets_list:
                 return chalets_list[0]
         raise ValueError('ID de chalet inexistant')
 
+    # Méthode pour créer une plage de dispos pour un chalet
     def post_chalet_reservation(self, reservations, ID_chalet, plage):
         if reservations in self.__reservations:
             if ID_chalet in self.__reservations[reservations]:
@@ -71,27 +88,39 @@ class Handler:
 
 
 class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler):
-
+    #Initialisation
     handler = Handler()
     # Permet la gestion de toutes les requetes de type get
     def do_GET(self):
+
         path = self.path
         print(path)
 
+        # Gérer la méthode get_reservation
         if path.startswith('/reservation/'):
             reservation = path.split('/')[2]
+            # Affichage
             content = 'Reservation: ' + reservation + ' -> ' + str(self.handler.get_reservation(reservation))
+            # Renvoie le bon code lorsque foncitonne
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end_headers()
             self.wfile.write(bytes(content, 'utf-8'))
 
+        # Gérer la méthode get_reservations
         elif path.startswith('/reservations/'):
             reservations = path.split('/')[2]
             content = 'Reservations: ' + reservations + ' -> ' + str(self.handler.get_reservations(reservations))
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
-            self.end
+            self.end_headers()
+            self.wfile.write(bytes(content, 'utf-8'))
+
+
+        else:
+            # Gère le cas ou le chemin d'accès n'est pas trouvé
+            self.send_response(500, 'Erreur')
+            self.end_headers()
 
     # à fixer probablement
     def do_POST(self):
