@@ -116,6 +116,15 @@ class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(bytes(content, 'utf-8'))
 
+        # Gérer la méthode get_chalets
+        elif path.startswith('/chalet/'):
+            chalets = path.split('/')[2]
+            content = 'Chalets: ' + chalets + ' -> ' + str(self.handler.get_reservations(chalets))
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            self.wfile.write(bytes(content, 'utf-8'))
+
 
         else:
             # Gère le cas ou le chemin d'accès n'est pas trouvé
@@ -125,16 +134,18 @@ class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler):
     # à fixer probablement
     def do_POST(self):
         path = self.path
+
         if path == '/reservations':
             content_length = int(self.headers['Content-Length'])
             body = self.rfile.read(content_length)
             json_str = json.loads(body)
             try:
-                self.chalet.ajout_reservations(json_str['nom'])
+                self.chalet.ajout_reservations(json_str[id])
                 self.send_response(200)
             except ValueError:
                 self.send_response(500, 'Réservation existante')
             self.end_headers()
+
         elif path.startswith('/reservations/'):
             reservations = path.split('/')[2]
             content_length = int(self.headers['Content-Length'])
