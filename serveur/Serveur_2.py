@@ -1,6 +1,3 @@
-import json
-from http.server import HTTPServer, BaseHTTPRequestHandler
-
 
 import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -19,10 +16,11 @@ class Handler:
 
     def post_reservations(self, reservations, nouv_reservation):
         if reservations not in self.__reservations:
-            self.__reservations[reservations] = []
+            raise ValueError('Réservation inexistante')
         if nouv_reservation in self.__reservations[reservations]:
-            raise ValueError('Reservation déjà existante')
-        self.__reservations[reservations].append(nouv_reservation)
+            raise ValueError('Réservation déjà existante')
+        index = self.__reservations[reservations].index(reservations)
+        self.__reservations[reservations][index] = nouv_reservation
 
     def put_reservations(self, nouv_reservation, anc_reservation):
         if nouv_reservation == anc_reservation:
@@ -79,7 +77,7 @@ class Handler:
 class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler):
 
     handler = Handler()
-
+    # Permet la gestion de toutes les requetes de type get
     def do_GET(self):
         path = self.path
         print(path)
@@ -99,6 +97,8 @@ class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/html')
             self.end
 class ServeurTest:
+
+    # Méthode pour initialiser le serveur et le garder en marche
     @staticmethod
     def run(serveur_class=HTTPServer, serveur_port=8000, handler_class=TPBaseHTTPRequestHandler):
         # le serveur va écouter sur localhost sur le port passé en paramètre
@@ -110,11 +110,9 @@ class ServeurTest:
         httpd.serve_forever()
 
 import unittest
-from unittest.mock import patch
-from io import StringIO
-from http.server import BaseHTTPRequestHandler
 
 
+#Test unitaires
 
 class TestHandler(unittest.TestCase):
 
