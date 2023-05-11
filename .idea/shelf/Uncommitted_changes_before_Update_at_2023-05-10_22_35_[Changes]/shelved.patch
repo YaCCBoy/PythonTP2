@@ -1,0 +1,116 @@
+Index: client/client_2.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import requests\r\n\r\nclass ClientServeurChalet:\r\n\r\n    def __init__(self, url_base):\r\n        self.__url_base = url_base\r\n        self.__post_headers = {'Content-Type': 'application/json'}\r\n\r\n    def get_reservation(self, reservation):\r\n        req = requests.get(self.__url_base + '/reservation/' + reservation)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n    def get_reservations_utilisateur(self, reservations_c):\r\n        req = requests.get(self.__url_base + '/reservations_utilisateur/' + reservations_c)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n    def post_reservation(self, info_reservation):\r\n        json_body = info_reservation\r\n        req = requests.post(self.__url_base + '/reservation', data=json_body, headers=self.__post_headers)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n    def put_reservation(self, data_reservations, reservation):\r\n        json_body = '{\"reservation\": \"' + reservation + '\" }'\r\n        req = requests.put(self.__url_base + '/reservations/' + data_reservations, data=json_body, headers=self.__post_headers)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n    def delete_reservation(self, reservation):\r\n        req = requests.delete(self.__url_base + '/reservation/' + reservation)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n    def post_utilisateur(self, utilisateur):\r\n        json_body = utilisateur\r\n        req = requests.post(self.__url_base + '/utilisateur', data=json_body, headers=self.__post_headers)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n    def get_reservations_liste(self, liste_reservations_ord):\r\n        req = requests.get(self.__url_base + '/liste_reservations/' + liste_reservations_ord)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n    def post_chalet(self, chalets):\r\n        json_body = chalets\r\n        req = requests.post(self.__url_base + '/chalets', data=json_body, headers=self.__post_headers)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n    def get_chalet(self, info_chalets):\r\n        req = requests.get(self.__url_base + '/chalet/' + info_chalets)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n    def post_plage(self, plage):\r\n        json_body = plage\r\n        req = requests.post(self.__url_base + '/plages', data=json_body, headers=self.__post_headers)\r\n        print(req.status_code)\r\n        print(req.content)\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/client/client_2.py b/client/client_2.py
+--- a/client/client_2.py	(revision b85f95e8cb3b2487b09456353e27573f23d7432e)
++++ b/client/client_2.py	(date 1683770494039)
+@@ -1,4 +1,5 @@
+ import requests
++import json
+ 
+ class ClientServeurChalet:
+ 
+Index: impex/impex.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import csv\r\nimport xmltodict\r\nfrom client import client_2\r\n\r\nclass Utilisateur:\r\n    def __init__(self, email, mdp, nom, prenom, type, adresse_no, adresse_rue, adresse_ville, adresse_prov, adresse_pays, adresse_cp):\r\n        self.__email = email\r\n        self.__mdp = mdp\r\n        self.__nom = nom\r\n        self.__prenom = prenom\r\n        self.__type = type\r\n        self.__adresse_no = adresse_no\r\n        self.__adresse_rue = adresse_rue\r\n        self.__adresse_ville = adresse_ville\r\n        self.__adresse_prov = adresse_prov\r\n        self.__adresse_pays = adresse_pays\r\n        self.__adresse_cp = adresse_cp\r\n\r\n    @property\r\n    def email(self):\r\n        return self.__email\r\n\r\n    @email.setter\r\n    def email(self, valeur):\r\n        self.__email = valeur\r\n\r\n    @property\r\n    def mdp(self):\r\n        return self.__mdp\r\n\r\n    @mdp.setter\r\n    def mdp(self, valeur):\r\n        self.__mdp = valeur\r\n\r\n    @property\r\n    def nom(self):\r\n        return self.__nom\r\n\r\n    @nom.setter\r\n    def nom(self, valeur):\r\n        self.__nom = valeur\r\n\r\n    @property\r\n    def prenom(self):\r\n        return self.__prenom\r\n\r\n    @prenom.setter\r\n    def prenom(self, valeur):\r\n        self.__prenom = valeur\r\n\r\n    @property\r\n    def type(self):\r\n        return self.__type\r\n\r\n    @type.setter\r\n    def type(self, valeur):\r\n        self.__type = valeur\r\n\r\n    @property\r\n    def adresse_no(self):\r\n        return self.__adresse_no\r\n\r\n    @adresse_no.setter\r\n    def adresse_no(self, valeur):\r\n        self.__adresse_no = valeur\r\n\r\n    @property\r\n    def adresse_rue(self):\r\n        return self.__adresse_rue\r\n\r\n    @adresse_rue.setter\r\n    def adresse_rue(self, valeur):\r\n        self.__adresse_rue = valeur\r\n\r\n    @property\r\n    def adresse_ville(self):\r\n        return self.__adresse_ville\r\n\r\n    @adresse_ville.setter\r\n    def adresse_ville(self, valeur):\r\n        self.__adresse_ville = valeur\r\n\r\n    @property\r\n    def adresse_prov(self):\r\n        return self.__adresse_prov\r\n\r\n    @adresse_prov.setter\r\n    def adresse_prov(self, valeur):\r\n        self.__adresse_prov = valeur\r\n\r\n    @property\r\n    def adresse_pays(self):\r\n        return self.__adresse_pays\r\n\r\n    @adresse_pays.setter\r\n    def adresse_pays(self, valeur):\r\n        self.__adresse_pays = valeur\r\n\r\n    @property\r\n    def adresse_cp(self):\r\n        return self.__adresse_cp\r\n\r\n    @adresse_cp.setter\r\n    def adresse_cp(self, valeur):\r\n        self.__adresse_cp = valeur\r\n\r\nclass Chalet:\r\n    def __init__(self, id, nom, url_image):\r\n        self.__id = id\r\n        self.__nom = nom\r\n        self.__url_image = url_image\r\n\r\n    @property\r\n    def id(self):\r\n        return self.__id\r\n\r\n    @id.setter\r\n    def id(self, valeur):\r\n        self.__id = valeur\r\n\r\n    @property\r\n    def nom(self, nom):\r\n        return self.__nom\r\n\r\n    @nom.setter\r\n    def nom(self, valeur):\r\n        self.__nom = valeur\r\n\r\n    @property\r\n    def url_image(self):\r\n        return self.__url_image\r\n\r\n    @url_image.setter\r\n    def url_image(self, valeur):\r\n        self.__url_image = valeur\r\n\r\ndef data_utilisateurs() :\r\n    with open(\"./data/utilisateurs.csv\") as csvfile :\r\n        reader1 = csv.DictReader(csvfile)\r\n        return reader1\r\n\r\n\r\ndef data_chalets() :\r\n    with open('./data/chalets.csv') as csvfile :\r\n        reader2 = csv.DictReader(csvfile)\r\n        return reader2\r\ndef data_reservations() :\r\n    file1 = open('./data/reservations.xml', 'r')\r\n    xml_string = file1.read()\r\n    reservation_dict = xmltodict.parse(xml_string)\r\n    print(reservation_dict)\r\n    return reservation_dict\r\n\r\ndef data_dipos() :\r\n    file2 = open('./data/disponibilites.xml', 'r')\r\n    xml_string = file2.read()\r\n    dispos_dict = xmltodict.parse(xml_string)\r\n    print(dispos_dict)\r\n    return dispos_dict\r\n\r\nutilisateurs = data_utilisateurs()\r\nchalets = data_chalets()\r\nreservations = data_reservations()\r\nplages = data_dipos()\r\n\r\nclient_2.ClientServeurChalet.post_reservation(reservations, reservations)\r\nclient_2.ClientServeurChalet.post_chalet(chalets)\r\nclient_2.ClientServeurChalet.post_utilisateur(utilisateurs)\r\nclient_2.ClientServeurChalet.post_plage(plages)\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/impex/impex.py b/impex/impex.py
+--- a/impex/impex.py	(revision b85f95e8cb3b2487b09456353e27573f23d7432e)
++++ b/impex/impex.py	(date 1683770494044)
+@@ -148,7 +148,7 @@
+     file1 = open('./data/reservations.xml', 'r')
+     xml_string = file1.read()
+     reservation_dict = xmltodict.parse(xml_string)
+-    print(reservation_dict)
++    return reservation_dict
+     return reservation_dict
+ 
+ def data_dipos() :
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"436508e9-1419-4243-93c0-d010826958e3\" name=\"Changes\" comment=\"Enlevé des trucs inutiles dans impex\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/impex/impex.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/impex/impex.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/serveur/Serveur_2.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/serveur/Serveur_2.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2PHxRPY6kYdKIwqnWnFb8Y6yHIC\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/lepep/OneDrive/Documents/École/Session 2/Programmation orientée objet/TP2/PythonTP2\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.ide.settings.new.ui\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"436508e9-1419-4243-93c0-d010826958e3\" name=\"Changes\" comment=\"\" />\r\n      <created>1683127800473</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1683127800473</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Ajouter encore plus de trucs inutiles\">\r\n      <created>1683128915038</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683128915038</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Ajout des classes Utilisateur et Chalet et de leurs getters et setters. Ajout de &quot;import client&quot;\">\r\n      <created>1683593333836</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683593333836</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Comment out le import client\">\r\n      <created>1683674977325</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683674977325</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Ajout des trucs dans le client mais tbh je comprends rien quand même\">\r\n      <created>1683680939297</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683680939297</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Enlevé des trucs inutiles dans impex\">\r\n      <created>1683729605245</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683729605245</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"com.intellij.fileTypeFactory\" implementationName=\"*.csv\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Ajouter encore plus de trucs inutiles\" />\r\n    <MESSAGE value=\"Ajout des classes Utilisateur et Chalet et de leurs getters et setters. Ajout de &quot;import client&quot;\" />\r\n    <MESSAGE value=\"Comment out le import client\" />\r\n    <MESSAGE value=\"Ajout des trucs dans le client mais tbh je comprends rien quand même\" />\r\n    <MESSAGE value=\"Enlevé des trucs inutiles dans impex\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Enlevé des trucs inutiles dans impex\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision b85f95e8cb3b2487b09456353e27573f23d7432e)
++++ b/.idea/workspace.xml	(date 1683772542849)
+@@ -4,10 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="Enlevé des trucs inutiles dans impex">
++    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="Commit do_POST pété, à fixer">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/client/client_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/client_2.py" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/impex/impex.py" beforeDir="false" afterPath="$PROJECT_DIR$/impex/impex.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/serveur/Serveur_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/serveur/Serveur_2.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -25,15 +25,15 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "main",
+-    "ignore.virus.scanning.warn.message": "true",
+-    "last_opened_file_path": "C:/Users/lepep/OneDrive/Documents/École/Session 2/Programmation orientée objet/TP2/PythonTP2",
+-    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/lepep/OneDrive/Documents/École/Session 2/Programmation orientée objet/TP2/PythonTP2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -78,7 +78,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1683729605245</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="Commit pour tester">
++      <created>1683768301750</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1683768301750</updated>
++    </task>
++    <task id="LOCAL-00007" summary="Commit do_POST pété, à fixer">
++      <created>1683771134055</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1683771134055</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="UnknownFeatures">
+@@ -101,6 +115,8 @@
+     <MESSAGE value="Comment out le import client" />
+     <MESSAGE value="Ajout des trucs dans le client mais tbh je comprends rien quand même" />
+     <MESSAGE value="Enlevé des trucs inutiles dans impex" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Enlevé des trucs inutiles dans impex" />
++    <MESSAGE value="Commit pour tester" />
++    <MESSAGE value="Commit do_POST pété, à fixer" />
++    <option name="LAST_COMMIT_MESSAGE" value="Commit do_POST pété, à fixer" />
+   </component>
+ </project>
+\ No newline at end of file
