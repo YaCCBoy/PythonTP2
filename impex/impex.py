@@ -1,6 +1,6 @@
 import csv
 import xmltodict
-from client import client_2
+from client import client
 
 
 # Fonction pour lire le fichier utilisateurs

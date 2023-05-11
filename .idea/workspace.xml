@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="quelques modifs">
+    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="Commit do_POST pété, à fixer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serveur/Serveur_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/serveur/Serveur_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/impex/impex.py" beforeDir="false" afterPath="$PROJECT_DIR$/impex/impex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serveur/Serveur_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/serveur/super_chalets_serveur.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
