@@ -2,7 +2,7 @@ import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 
-class Truc() :
+class Handler() :
 
     def __init__(self):
         self.__reservations = {}
@@ -55,7 +55,7 @@ class Truc() :
 class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler) :
 
 
-    truc = Truc()
+    handler = Handler()
 
     def do_GET(self):
         path = self.path
@@ -63,10 +63,26 @@ class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler) :
 
         if path.startswith('/reservation/') :
             reservation = path.split('/')[2]
-            content = 'Reservation : ' + reservation + '-> ' + str(self.truc.get_reservation[reservation])
+            content = 'Reservation : ' + reservation + '-> ' + str(self.handler.get_reservation[reservation])
             self.send_response(200)
             self.send_header()
             self.wfile.write(bytes(content, 'utf-8'))
+
+        elif path.startswith('/reservations/'):
+            reservations = path.split('/')[2]
+            content = 'Reservations : ' + reservations + '-> ' + str(self.handler.get_reservations[reservations])
+            self.send_response(200)
+            self.send_header()
+            self.wfile.write(bytes(content, 'utf-8'))
+
+        elif path.startswith('/chalet/'):
+            chalet = path.split('/')[2]
+            content = 'Chalet : ' + chalet + '-> ' + str(self.handler.get_reservations[chalet])
+            self.send_response(200)
+            self.send_header()
+            self.wfile.write(bytes(content, 'utf-8'))
+
+
 
         else :
             self.send_response(500, 'ERREUR')
