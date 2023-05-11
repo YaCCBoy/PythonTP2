@@ -16,15 +16,12 @@ class Handler:
 
     def post_reservations(self, reservations, nouv_reservation):
         if reservations not in self.__reservations:
-            raise ValueError('Réservation inexistante')
-        if nouv_reservation in self.__reservations[reservations]:
-            raise ValueError('Réservation déjà existante')
-        index = self.__reservations[reservations].index(reservations)
-        self.__reservations[reservations][index] = nouv_reservation
+            self.__reservations[reservations] = []
+        self.__reservations[reservations].append(nouv_reservation)
 
     def put_reservations(self, nouv_reservation, anc_reservation):
         if nouv_reservation == anc_reservation:
-            raise ValueError('Aucun changement dans la reservation')
+            raise ValueError('Aucun changement dans la réservation')
         for reservations, reservations_list in self.__reservations.items():
             if anc_reservation in reservations_list:
                 index = reservations_list.index(anc_reservation)
