@@ -28,8 +28,10 @@ class ClientServeurChalet:
         print(req.status_code)
         print(req.content)
 
-    def delete_reservation(self):
-        pass
+    def delete_reservation(self, reservation):
+        req = requests.delete(self.__url_base + '/reservation/' + reservation)
+        print(req.status_code)
+        print(req.content)
 
     def post_utilisateur(self, utilisateur):
         json_body = '{"utilisateur": "' + utilisateur + '"}'
