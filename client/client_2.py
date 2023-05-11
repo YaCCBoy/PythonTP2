@@ -17,7 +17,7 @@ class ClientServeurChalet:
         print(req.content)
 
     def post_reservation(self, info_reservation):
-        json_body = '{"reservation": "' + info_reservation + '"}'
+        json_body = info_reservation
         req = requests.post(self.__url_base + '/reservation', data=json_body, headers=self.__post_headers)
         print(req.status_code)
         print(req.content)
@@ -34,7 +34,7 @@ class ClientServeurChalet:
         print(req.content)
 
     def post_utilisateur(self, utilisateur):
-        json_body = '{"utilisateur": "' + utilisateur + '"}'
+        json_body = utilisateur
         req = requests.post(self.__url_base + '/utilisateur', data=json_body, headers=self.__post_headers)
         print(req.status_code)
         print(req.content)
@@ -45,7 +45,7 @@ class ClientServeurChalet:
         print(req.content)
 
     def post_chalet(self, chalets):
-        json_body = '{"chalets": "' + chalets + '"}'
+        json_body = chalets
         req = requests.post(self.__url_base + '/chalets', data=json_body, headers=self.__post_headers)
         print(req.status_code)
         print(req.content)
@@ -56,7 +56,7 @@ class ClientServeurChalet:
         print(req.content)
 
     def post_plage(self, plage):
-        json_body = '{"plages": "' + plage + '"}'
+        json_body = plage
         req = requests.post(self.__url_base + '/plages', data=json_body, headers=self.__post_headers)
         print(req.status_code)
         print(req.content)

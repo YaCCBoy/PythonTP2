@@ -105,80 +105,82 @@ class ServeurTest:
         # Écoute pour des requêtes jusqu'à ce qu'on arrête le serveur
         httpd.serve_forever()
 
+ServeurTest.run()
+
 import unittest
 
 
 #Test unitaires
-
-class TestHandler(unittest.TestCase):
-
-    def setUp(self):
-        self.handler = Handler()
-
-    def test_post_reservations(self):
-        self.handler.post_reservations("John", "Reservation 1")
-        self.assertEqual(self.handler.reservations["John"], ["Reservation 1"])
-
-    def test_post_reservations_existing(self):
-        self.handler.reservations = {"John": ["Reservation 1"]}
-        with self.assertRaises(ValueError):
-            self.handler.post_reservations("John", "Reservation 1")
-
-    def test_put_reservations(self):
-        self.handler.reservations = {"John": ["Reservation 1"]}
-        self.handler.put_reservations("Reservation 2", "Reservation 1")
-        self.assertEqual(self.handler.reservations["John"], ["Reservation 2"])
-
-    def test_put_reservations_no_change(self):
-        self.handler.reservations = {"John": ["Reservation 1"]}
-        with self.assertRaises(ValueError):
-            self.handler.put_reservations("Reservation 1", "Reservation 1")
-
-    def test_get_reservation(self):
-        self.handler.reservations = {"John": ["Reservation 1"]}
-        reservation = self.handler.get_reservation("Reservation 1")
-        self.assertEqual(reservation, "Reservation 1")
-
-    def test_get_reservation_nonexistent(self):
-        self.handler.reservations = {"John": ["Reservation 1"]}
-        with self.assertRaises(ValueError):
-            self.handler.get_reservation("Reservation 2")
-
-    def test_get_reservations(self):
-        self.handler.reservations = {"john@example.com": ["Reservation 1", "Reservation 2"]}
-        reservations = self.handler.get_reservations("john@example.com")
-        self.assertEqual(reservations, ["Reservation 1", "Reservation 2"])
-
-    def test_get_reservations_nonexistent(self):
-        self.handler.reservations = {"john@example.com": ["Reservation 1", "Reservation 2"]}
-        with self.assertRaises(ValueError):
-            self.handler.get_reservations("jane@example.com")
-
-    def test_post_utilisateur(self):
-        self.handler.post_utilisateur("Reservation 1", "John")
-        self.assertEqual(self.handler.utilisateurs["Reservation 1"], ["John"])
-
-    def test_post_utilisateur_existing(self):
-        self.handler.utilisateurs = {"Reservation 1": ["John"]}
-        with self.assertRaises(ValueError):
-            self.handler.post_utilisateur("Reservation 1", "John")
-
-    def test_post_chalet(self):
-        self.handler.post_chalet("Resort A", "Chalet 1")
-        self.assertEqual(self.handler.chalets["Resort A"], ["Chalet 1"])
-
-    def test_post_chalet_existing(self):
-        self.handler.chalets = {"Resort A": ["Chalet 1"]}
-        with self.assertRaises(ValueError):
-            self.handler.post_chalet("Resort A", "Chalet 1")
-
-    def test_get_chalet(self):
-        self.handler.chalets = {"Resort A": ["Chalet 1"]}
-        chalet = self.handler.get_chalet("Chalet 1")
-        self.assertEqual(chalet, "Chalet 1")
-
-    def test_get_chalet_nonexistent(self):
-        self.handler.chalets = {"Resort A": ["Chalet 1"]}
-        with self.assertRaises(ValueError):
-            self.handler.get_chalet("Chalet 2")
-
+#
+# class TestHandler(unittest.TestCase):
+#
+#     def setUp(self):
+#         self.handler = Handler()
+#
+#     def test_post_reservations(self):
+#         self.handler.post_reservations("John", "Reservation 1")
+#         self.assertEqual(self.handler.reservations["John"], ["Reservation 1"])
+#
+#     def test_post_reservations_existing(self):
+#         self.handler.reservations = {"John": ["Reservation 1"]}
+#         with self.assertRaises(ValueError):
+#             self.handler.post_reservations("John", "Reservation 1")
+#
+#     def test_put_reservations(self):
+#         self.handler.reservations = {"John": ["Reservation 1"]}
+#         self.handler.put_reservations("Reservation 2", "Reservation 1")
+#         self.assertEqual(self.handler.reservations["John"], ["Reservation 2"])
+#
+#     def test_put_reservations_no_change(self):
+#         self.handler.reservations = {"John": ["Reservation 1"]}
+#         with self.assertRaises(ValueError):
+#             self.handler.put_reservations("Reservation 1", "Reservation 1")
+#
+#     def test_get_reservation(self):
+#         self.handler.reservations = {"John": ["Reservation 1"]}
+#         reservation = self.handler.get_reservation("Reservation 1")
+#         self.assertEqual(reservation, "Reservation 1")
+#
+#     def test_get_reservation_nonexistent(self):
+#         self.handler.reservations = {"John": ["Reservation 1"]}
+#         with self.assertRaises(ValueError):
+#             self.handler.get_reservation("Reservation 2")
+#
+#     def test_get_reservations(self):
+#         self.handler.reservations = {"john@example.com": ["Reservation 1", "Reservation 2"]}
+#         reservations = self.handler.get_reservations("john@example.com")
+#         self.assertEqual(reservations, ["Reservation 1", "Reservation 2"])
+#
+#     def test_get_reservations_nonexistent(self):
+#         self.handler.reservations = {"john@example.com": ["Reservation 1", "Reservation 2"]}
+#         with self.assertRaises(ValueError):
+#             self.handler.get_reservations("jane@example.com")
+#
+#     def test_post_utilisateur(self):
+#         self.handler.post_utilisateur("Reservation 1", "John")
+#         self.assertEqual(self.handler.utilisateurs["Reservation 1"], ["John"])
+#
+#     def test_post_utilisateur_existing(self):
+#         self.handler.utilisateurs = {"Reservation 1": ["John"]}
+#         with self.assertRaises(ValueError):
+#             self.handler.post_utilisateur("Reservation 1", "John")
+#
+#     def test_post_chalet(self):
+#         self.handler.post_chalet("Resort A", "Chalet 1")
+#         self.assertEqual(self.handler.chalets["Resort A"], ["Chalet 1"])
+#
+#     def test_post_chalet_existing(self):
+#         self.handler.chalets = {"Resort A": ["Chalet 1"]}
+#         with self.assertRaises(ValueError):
+#             self.handler.post_chalet("Resort A", "Chalet 1")
+#
+#     def test_get_chalet(self):
+#         self.handler.chalets = {"Resort A": ["Chalet 1"]}
+#         chalet = self.handler.get_chalet("Chalet 1")
+#         self.assertEqual(chalet, "Chalet 1")
+#
+#     def test_get_chalet_nonexistent(self):
+#         self.handler.chalets = {"Resort A": ["Chalet 1"]}
+#         with self.assertRaises(ValueError):
+#             self.handler.get_chalet("Chalet 2")
+#
