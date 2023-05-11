@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="wat">
+    <list default="true" id="436508e9-1419-4243-93c0-d010826958e3" name="Changes" comment="Commit do_POST pété, à fixer">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serveur/super_chalets_serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/serveur/super_chalets_serveur.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,21 +113,7 @@
       <option name="project" value="LOCAL" />
       <updated>1683771730341</updated>
     </task>
-    <task id="LOCAL-00011" summary="Enlevé des fichiers inutilisés">
-      <created>1683772835058</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1683772835058</updated>
-    </task>
-    <task id="LOCAL-00012" summary="wat">
-      <created>1683772911192</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1683772911192</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -152,8 +139,6 @@
     <MESSAGE value="test Impex" />
     <MESSAGE value="Ajout methode del" />
     <MESSAGE value="quelques modifs" />
-    <MESSAGE value="Enlevé des fichiers inutilisés" />
-    <MESSAGE value="wat" />
-    <option name="LAST_COMMIT_MESSAGE" value="wat" />
+    <option name="LAST_COMMIT_MESSAGE" value="quelques modifs" />
   </component>
 </project>

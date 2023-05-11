@@ -125,17 +125,26 @@ class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(bytes(content, 'utf-8'))
 
+        # Gérer la méthode get_chalets
+        elif path.startswith('/chalet/'):
+            chalets = path.split('/')[2]
+            content = 'Chalets: ' + chalets + ' -> ' + str(self.handler.get_reservations(chalets))
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            self.wfile.write(bytes(content, 'utf-8'))
 
         else:
             # Gère le cas ou le chemin d'accès n'est pas trouvé
             self.send_response(500, 'Erreur')
             self.end_headers()
 
-    # à fixer probablement
+    # Permet la gestion de toutes les requetes de type post
     def do_POST(self):
         path = self.path
 
-        if path == '/reservations':
+        #Gérer la méthode post_chalet
+        if path == '/chalet':
             content_length = int(self.headers['Content-Length'])
             body = self.rfile.read(content_length)
             json_str = json.loads(body)
@@ -146,13 +155,34 @@ class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler):
                 self.send_response(500, 'Réservation existante')
             self.end_headers()
 
-        elif path.startswith('/reservations/'):
-            reservations = path.split('/')[2]
+        #Gérer la méthode post_utilisateur
+        elif path == '/utilisateur':
             content_length = int(self.headers['Content-Length'])
             body = self.rfile.read(content_length)
             json_str = json.loads(body)
-            self.chalet.ajout_animal(reservations, json_str['nom'])
-            self.send_response(200)
+            try:
+                self.utilisateur.ajout_reservations(json_str[id])
+                self.send_response(200)
+            except ValueError:
+                self.send_response(500, 'Réservation existante')
+
+            self.end_headers()
+
+        #Gérer la méthode post_chalet_reservation
+        elif path == '/chalet_reservation':
+            content_length = int(self.headers['Content-Length'])
+            body = self.rfile.read(content_length)
+            json_str = json.loads(body)
+            try:
+                self.chalet_reservation.ajout_reservations(json_str[id])
+                self.send_response(200)
+            except ValueError:
+                self.send_response(500, 'Réservation existante')
+            self.end_headers()
+
+        else:
+            # Gère le cas ou le chemin d'accès n'est pas trouvé
+            self.send_response(500, 'Erreur')
             self.end_headers()
 
 class ServeurTest:
