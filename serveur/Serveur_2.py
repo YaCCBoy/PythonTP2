@@ -92,6 +92,29 @@ class TPBaseHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end
+
+    # à fixer probablement
+    def do_POST(self):
+        path = self.path
+        if path == '/reservations':
+            content_length = int(self.headers['Content-Length'])
+            body = self.rfile.read(content_length)
+            json_str = json.loads(body)
+            try:
+                self.chalet.ajout_reservations(json_str['nom'])
+                self.send_response(200)
+            except ValueError:
+                self.send_response(500, 'Réservation existante')
+            self.end_headers()
+        elif path.startswith('/reservations/'):
+            reservations = path.split('/')[2]
+            content_length = int(self.headers['Content-Length'])
+            body = self.rfile.read(content_length)
+            json_str = json.loads(body)
+            self.chalet.ajout_animal(reservations, json_str['nom'])
+            self.send_response(200)
+            self.end_headers()
+
 class ServeurTest:
 
     # Méthode pour initialiser le serveur et le garder en marche
@@ -107,7 +130,7 @@ class ServeurTest:
 
 ServeurTest.run()
 
-import unittest
+#import unittest
 
 
 #Test unitaires
